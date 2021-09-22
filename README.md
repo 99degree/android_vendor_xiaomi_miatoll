@@ -23,7 +23,11 @@ Procedure:
 ```
 Note:
 the provided fstab.qcom/fstab.default is unencrypted version so /data is not encrypted.
-It is very easy to modify to enable encryption, it is uncomment(remove # sign) the "#/data..." line and toggle the another one else.
+It is very easy to modify to enable encryption, it is uncomment(remove # sign) the "#/dev/block/..." line and toggle the another one else with inlinecrypt.
+```
+#/dev/block/bootdevice/by-name/userdata                  /data                    f2fs    noatime,nosuid,nodev,discard,reserve_root=32768,resgid=1065,fsync_mode=nobarrier,inlinecrypt    latemount,wait,check,formattable,fileencryption=ice,wrappedkey,quota,reservedsize=128M,checkpoint=fs
+/dev/block/bootdevice/by-name/userdata                  /data                    f2fs    noatime,nosuid,nodev,discard,reserve_root=32768,resgid=1065,fsync_mode=nobarrier    latemount,wait,check,formattable,wrappedkey,keydirectory=/metadata/vold/metadata_encryption,quota,reservedsize=128M,sysfs_path=/sys/devices/platform/soc/1d84000.ufshc,checkpoint=fs
+```
 
 And there are three choice for the custom kernel.
 ```
